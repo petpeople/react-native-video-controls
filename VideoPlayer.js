@@ -26,7 +26,7 @@ export default class VideoPlayer extends Component {
         resizeMode:                     'contain',
         paused:                         false,
         repeat:                         false,
-        volume:                         1,
+        volume:                         0.05,
         muted:                          false,
         title:                          '',
         rate:                           1,
@@ -1116,6 +1116,7 @@ export default class VideoPlayer extends Component {
         paused={ this.state.paused }
         muted={ this.state.muted }
         rate={ this.state.rate }
+        ignoreSilentSwitch={'ignore'}
 
         onLoadStart={ this.events.onLoadStart }
         onProgress={ this.events.onProgress }
@@ -1290,15 +1291,16 @@ const styles = {
         },
         track: {
             backgroundColor: '#333',
-            height: 1,
+            height: 3,
             marginLeft: 7,
         },
         fill: {
             backgroundColor: '#FFF',
-            height: 1,
+            height: 2,
         },
         handle: {
             position: 'absolute',
+            width: 60,
             marginTop: -24,
             marginLeft: -24,
             padding: 16,
@@ -1316,29 +1318,29 @@ const styles = {
         },
         track: {
             backgroundColor: '#333',
-            height: 1,
+            height: 3,
             position: 'relative',
             top: 14,
             width: '100%'
         },
         fill: {
             backgroundColor: '#FFF',
-            height: 1,
+            height: 3,
             width: '100%'
         },
         handle: {
             position: 'absolute',
-            marginLeft: -7,
+            marginLeft: -20,
             top: -6,
             height: 45,
-            width: 45,
+            width: 55,
         },
         circle: {
-            borderRadius: 7,
+            borderRadius: 9,
             position: 'relative',
-            top: 14, left: 8,
-            height: 14,
-            width: 14,
+            top: 13, left: 15,
+            height: 18,
+            width: 18,
         },
     })
 };

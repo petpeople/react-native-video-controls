@@ -152,15 +152,15 @@ export default class VideoPlayer extends Component {
 
 
     /**
-    | -------------------------------------------------------
-    | Events
-    | -------------------------------------------------------
-    |
-    | These are the events that the <Video> component uses
-    | and can be overridden by assigning it as a prop.
-    | It is suggested that you override onEnd.
-    |
-    */
+     | -------------------------------------------------------
+     | Events
+     | -------------------------------------------------------
+     |
+     | These are the events that the <Video> component uses
+     | and can be overridden by assigning it as a prop.
+     | It is suggested that you override onEnd.
+     |
+     */
 
     /**
      * When load starts we display a loading icon
@@ -192,7 +192,7 @@ export default class VideoPlayer extends Component {
         this.setState( state );
 
         if ( state.showControls ) {
-            this.setControlTimeout();
+            // this.setControlTimeout();
         }
 
         if ( typeof this.props.onLoad === 'function' ) {
@@ -268,16 +268,16 @@ export default class VideoPlayer extends Component {
 
 
     /**
-    | -------------------------------------------------------
-    | Methods
-    | -------------------------------------------------------
-    |
-    | These are all of our functions that interact with
-    | various parts of the class. Anything from
-    | calculating time remaining in a video
-    | to handling control operations.
-    |
-    */
+     | -------------------------------------------------------
+     | Methods
+     | -------------------------------------------------------
+     |
+     | These are all of our functions that interact with
+     | various parts of the class. Anything from
+     | calculating time remaining in a video
+     | to handling control operations.
+     |
+     */
 
     /**
      * Set a timeout when the controls are shown
@@ -285,24 +285,24 @@ export default class VideoPlayer extends Component {
      * Default is 15s
      */
     setControlTimeout() {
-        this.player.controlTimeout = setTimeout( ()=> {
-            this._hideControls();
-        }, this.player.controlTimeoutDelay );
+        // this.player.controlTimeout = setTimeout( ()=> {
+        //     this._hideControls();
+        // }, this.player.controlTimeoutDelay );
     }
 
     /**
      * Clear the hide controls timeout.
      */
     clearControlTimeout() {
-        clearTimeout( this.player.controlTimeout );
+        // clearTimeout( this.player.controlTimeout );
     }
 
     /**
      * Reset the timer completely
      */
     resetControlTimeout() {
-        this.clearControlTimeout();
-        this.setControlTimeout();
+        // this.clearControlTimeout();
+        // this.setControlTimeout();
     }
 
     /**
@@ -652,15 +652,15 @@ export default class VideoPlayer extends Component {
 
 
     /**
-    | -------------------------------------------------------
-    | React Component functions
-    | -------------------------------------------------------
-    |
-    | Here we're initializing our listeners and getting
-    | the component ready using the built-in React
-    | Component methods
-    |
-    */
+     | -------------------------------------------------------
+     | React Component functions
+     | -------------------------------------------------------
+     |
+     | Here we're initializing our listeners and getting
+     | the component ready using the built-in React
+     | Component methods
+     |
+     */
 
     /**
      * Before mounting, init our seekbar and volume bar
@@ -804,16 +804,16 @@ export default class VideoPlayer extends Component {
 
 
     /**
-    | -------------------------------------------------------
-    | Rendering
-    | -------------------------------------------------------
-    |
-    | This section contains all of our render methods.
-    | In addition to the typical React render func
-    | we also have all the render methods for
-    | the controls.
-    |
-    */
+     | -------------------------------------------------------
+     | Rendering
+     | -------------------------------------------------------
+     |
+     | This section contains all of our render methods.
+     | In addition to the typical React render func
+     | we also have all the render methods for
+     | the controls.
+     |
+     */
 
     /**
      * Standard render control function that handles
@@ -824,20 +824,20 @@ export default class VideoPlayer extends Component {
     renderControl( children, callback, style = {} ) {
         return (
             <TouchableHighlight
-                underlayColor="transparent"
-                activeOpacity={ 0.3 }
-                onPress={()=>{
-                    this.resetControlTimeout();
-                    callback();
-                }}
-                style={[
-                    styles.controls.control,
-                    style
-                ]}
-            >
-                { children }
-            </TouchableHighlight>
-        );
+        underlayColor="transparent"
+        activeOpacity={ 0.3 }
+        onPress={()=>{
+            this.resetControlTimeout();
+            callback();
+        }}
+        style={[
+                styles.controls.control,
+            style
+    ]}
+    >
+        { children }
+    </TouchableHighlight>
+    );
     }
 
     /**
@@ -846,7 +846,7 @@ export default class VideoPlayer extends Component {
     renderNullControl() {
         return (
             <View style={[ styles.controls.control ]} />
-        );
+    );
     }
 
     /**
@@ -862,25 +862,25 @@ export default class VideoPlayer extends Component {
         return(
             <Animated.View style={[
                 styles.controls.top,
-                {
-                    opacity: this.animations.topControl.opacity,
-                    marginTop: this.animations.topControl.marginTop,
-                }
-            ]}>
-                <ImageBackground
-                    source={ require( './assets/img/top-vignette.png' ) }
-                    style={[ styles.controls.column ]}
-                    imageStyle={[ styles.controls.vignette ]}>
-                    <View style={ styles.controls.topControlGroup }>
-                        { backControl }
-                        <View style={ styles.controls.pullRight }>
-                            { volumeControl }
-                            { fullscreenControl }
-                        </View>
-                    </View>
-                </ImageBackground>
-            </Animated.View>
-        );
+        {
+            opacity: this.animations.topControl.opacity,
+                marginTop: this.animations.topControl.marginTop,
+        }
+    ]}>
+    <ImageBackground
+        source={ require( './assets/img/top-vignette.png' ) }
+        style={[ styles.controls.column ]}
+        imageStyle={[ styles.controls.vignette ]}>
+            <View style={ styles.controls.topControlGroup }>
+            { backControl }
+            <View style={ styles.controls.pullRight }>
+            { volumeControl }
+        { fullscreenControl }
+    </View>
+        </View>
+        </ImageBackground>
+        </Animated.View>
+    );
     }
 
     /**
@@ -890,12 +890,12 @@ export default class VideoPlayer extends Component {
 
         return this.renderControl(
             <Image
-                source={ require( './assets/img/back.png' ) }
-                style={ styles.controls.back }
-            />,
-            this.events.onBack,
+        source={ require( './assets/img/back.png' ) }
+        style={ styles.controls.back }
+        />,
+        this.events.onBack,
             styles.controls.back
-        );
+    );
     }
 
     /**
@@ -905,25 +905,25 @@ export default class VideoPlayer extends Component {
 
         return (
             <View style={ styles.volume.container }>
-                <View style={[
-                    styles.volume.fill,
-                    { width: this.state.volumeFillWidth }
-                ]}/>
-                <View style={[
-                    styles.volume.track,
-                    { width: this.state.volumeTrackWidth }
-                ]}/>
-                <View
-                    style={[
-                        styles.volume.handle,
-                        { left: this.state.volumePosition }
-                    ]}
-                    { ...this.player.volumePanResponder.panHandlers }
-                >
-                    <Image style={ styles.volume.icon } source={ require( './assets/img/volume.png' ) } />
-                </View>
-            </View>
-        );
+            <View style={[
+                styles.volume.fill,
+        { width: this.state.volumeFillWidth }
+    ]}/>
+        <View style={[
+                styles.volume.track,
+        { width: this.state.volumeTrackWidth }
+    ]}/>
+        <View
+        style={[
+                styles.volume.handle,
+        { left: this.state.volumePosition }
+    ]}
+        { ...this.player.volumePanResponder.panHandlers }
+    >
+    <Image style={ styles.volume.icon } source={ require( './assets/img/volume.png' ) } />
+        </View>
+        </View>
+    );
     }
 
     /**
@@ -934,9 +934,9 @@ export default class VideoPlayer extends Component {
         let source = this.state.isFullscreen === true ? require( './assets/img/shrink.png' ) : require( './assets/img/expand.png' );
         return this.renderControl(
             <Image source={ source } />,
-            this.methods.toggleFullscreen,
+        this.methods.toggleFullscreen,
             styles.controls.fullscreen
-        );
+    );
     }
 
     /**
@@ -951,28 +951,28 @@ export default class VideoPlayer extends Component {
         return(
             <Animated.View style={[
                 styles.controls.bottom,
-                {
-                    opacity: this.animations.bottomControl.opacity,
-                    marginBottom: this.animations.bottomControl.marginBottom,
-                }
-            ]}>
-                <ImageBackground
-                    source={ require( './assets/img/bottom-vignette.png' ) }
-                    style={[ styles.controls.column ]}
-                    imageStyle={[ styles.controls.vignette ]}>
-                    { seekbarControl }
-                    <View style={[
-                        styles.controls.row,
-                        styles.controls.bottomControlGroup
-                    ]}>
-                        { playPauseControl }
-                        { this.renderTitle() }
-                        { timerControl }
+        {
+            opacity: this.animations.bottomControl.opacity,
+                marginBottom: this.animations.bottomControl.marginBottom,
+        }
+    ]}>
+    <ImageBackground
+        source={ require( './assets/img/bottom-vignette.png' ) }
+        style={[ styles.controls.column ]}
+        imageStyle={[ styles.controls.vignette ]}>
+            { seekbarControl }
+            <View style={[
+                styles.controls.row,
+            styles.controls.bottomControlGroup
+    ]}>
+        { playPauseControl }
+        { this.renderTitle() }
+        { timerControl }
 
-                    </View>
-                </ImageBackground>
-            </Animated.View>
-        );
+    </View>
+        </ImageBackground>
+        </Animated.View>
+    );
     }
 
     /**
@@ -982,32 +982,32 @@ export default class VideoPlayer extends Component {
 
         return (
             <View style={ styles.seekbar.container }>
-                <View
-                    style={ styles.seekbar.track }
-                    onLayout={ event => this.player.seekerWidth = event.nativeEvent.layout.width }
-                >
-                    <View style={[
-                        styles.seekbar.fill,
-                        {
-                            width: this.state.seekerFillWidth,
-                            backgroundColor: this.props.seekColor || '#FFF'
-                        }
-                    ]}/>
-                </View>
-                <View
-                    style={[
-                        styles.seekbar.handle,
-                        { left: this.state.seekerPosition }
-                    ]}
-                    { ...this.player.seekPanResponder.panHandlers }
-                >
-                    <View style={[
-                        styles.seekbar.circle,
-                        { backgroundColor: this.props.seekColor || '#FFF' } ]}
-                    />
-                </View>
-            </View>
-        );
+            <View
+        style={ styles.seekbar.track }
+        onLayout={ event => this.player.seekerWidth = event.nativeEvent.layout.width }
+    >
+    <View style={[
+                styles.seekbar.fill,
+        {
+            width: this.state.seekerFillWidth,
+                backgroundColor: this.props.seekColor || '#FFF'
+        }
+    ]}/>
+        </View>
+        <View
+        style={[
+                styles.seekbar.handle,
+        { left: this.state.seekerPosition }
+    ]}
+        { ...this.player.seekPanResponder.panHandlers }
+    >
+    <View style={[
+                styles.seekbar.circle,
+        { backgroundColor: this.props.seekColor || '#FFF' } ]}
+        />
+        </View>
+        </View>
+    );
     }
 
     /**
@@ -1018,9 +1018,9 @@ export default class VideoPlayer extends Component {
         let source = this.state.paused === true ? require( './assets/img/play.png' ) : require( './assets/img/pause.png' );
         return this.renderControl(
             <Image source={ source } />,
-            this.methods.togglePlayPause,
+        this.methods.togglePlayPause,
             styles.controls.playPause
-        );
+    );
     }
 
     /**
@@ -1032,16 +1032,16 @@ export default class VideoPlayer extends Component {
             return (
                 <View style={[
                     styles.controls.control,
-                    styles.controls.title,
-                ]}>
-                    <Text style={[
-                        styles.controls.text,
-                        styles.controls.titleText
-                    ]} numberOfLines={ 1 }>
-                        { this.opts.title || '' }
-                    </Text>
+                styles.controls.title,
+        ]}>
+        <Text style={[
+                    styles.controls.text,
+                styles.controls.titleText
+        ]} numberOfLines={ 1 }>
+                { this.opts.title || '' }
+                </Text>
                 </View>
-            );
+        );
         }
 
         return null;
@@ -1054,11 +1054,11 @@ export default class VideoPlayer extends Component {
 
         return this.renderControl(
             <Text style={ styles.controls.timerText }>
-                { this.calculateTime() }
+            { this.calculateTime() }
             </Text>,
-            this.methods.toggleTimer,
+        this.methods.toggleTimer,
             styles.controls.timer
-        );
+    );
     }
 
     /**
@@ -1068,17 +1068,17 @@ export default class VideoPlayer extends Component {
         if ( this.state.loading ) {
             return (
                 <View style={ styles.loader.container }>
-                    <Animated.Image source={ require( './assets/img/loader-icon.png' ) } style={[
-                        styles.loader.icon,
-                        { transform: [
-                            { rotate: this.animations.loader.rotate.interpolate({
-                                inputRange: [ 0, 360 ],
-                                outputRange: [ '0deg', '360deg' ]
-                            })}
-                        ]}
-                    ]} />
-                </View>
-            );
+                <Animated.Image source={ require( './assets/img/loader-icon.png' ) } style={[
+                    styles.loader.icon,
+            { transform: [
+                { rotate: this.animations.loader.rotate.interpolate({
+                        inputRange: [ 0, 360 ],
+                        outputRange: [ '0deg', '360deg' ]
+                    })}
+            ]}
+        ]} />
+            </View>
+        );
         }
         return null;
     }
@@ -1087,12 +1087,12 @@ export default class VideoPlayer extends Component {
         if ( this.state.error ) {
             return (
                 <View style={ styles.error.container }>
-                    <Image source={ require( './assets/img/error-icon.png' ) } style={ styles.error.icon } />
-                    <Text style={ styles.error.text }>
-                        Video unavailable
-                    </Text>
-                </View>
-            );
+                <Image source={ require( './assets/img/error-icon.png' ) } style={ styles.error.icon } />
+            <Text style={ styles.error.text }>
+                Video unavailable
+            </Text>
+            </View>
+        );
         }
         return null;
     }
@@ -1103,37 +1103,37 @@ export default class VideoPlayer extends Component {
     render() {
         return (
             <TouchableWithoutFeedback
-                onPress={ this.events.onScreenTouch }
-                style={[ styles.player.container, this.styles.containerStyle ]}
-            >
-                <View style={[ styles.player.container, this.styles.containerStyle ]}>
-                    <Video
-                        { ...this.props }
-                        ref={ videoPlayer => this.player.ref = videoPlayer }
+        onPress={ this.events.onScreenTouch }
+        style={[ styles.player.container, this.styles.containerStyle ]}
+    >
+    <View style={[ styles.player.container, this.styles.containerStyle ]}>
+    <Video
+        { ...this.props }
+        ref={ videoPlayer => this.player.ref = videoPlayer }
 
-                        resizeMode={ this.state.resizeMode }
-                        volume={ this.state.volume }
-                        paused={ this.state.paused }
-                        muted={ this.state.muted }
-                        rate={ this.state.rate }
+        resizeMode={ this.state.resizeMode }
+        volume={ this.state.volume }
+        paused={ this.state.paused }
+        muted={ this.state.muted }
+        rate={ this.state.rate }
 
-                        onLoadStart={ this.events.onLoadStart }
-                        onProgress={ this.events.onProgress }
-                        onError={ this.events.onError }
-                        onLoad={ this.events.onLoad }
-                        onEnd={ this.events.onEnd }
+        onLoadStart={ this.events.onLoadStart }
+        onProgress={ this.events.onProgress }
+        onError={ this.events.onError }
+        onLoad={ this.events.onLoad }
+        onEnd={ this.events.onEnd }
 
-                        style={[ styles.player.video, this.styles.videoStyle ]}
+        style={[ styles.player.video, this.styles.videoStyle ]}
 
-                        source={ this.props.source }
-                    />
-                    { this.renderError() }
-                    { this.renderTopControls() }
-                    { this.renderLoader() }
-                    { this.renderBottomControls() }
-                </View>
-            </TouchableWithoutFeedback>
-        );
+        source={ this.props.source }
+        />
+        { this.renderError() }
+        { this.renderTopControls() }
+        { this.renderLoader() }
+        { this.renderBottomControls() }
+    </View>
+        </TouchableWithoutFeedback>
+    );
     }
 }
 
@@ -1246,7 +1246,7 @@ const styles = {
             justifyContent: 'space-between',
             marginLeft: 12,
             marginRight: 12,
-            marginBottom: 0,
+            marginBottom: 10,
         },
         volume: {
             flexDirection: 'row',
@@ -1328,17 +1328,17 @@ const styles = {
         },
         handle: {
             position: 'absolute',
-            marginLeft: -26,
-            marginTop: -5,
-            height: 50,
-            width: 50,
+            marginLeft: -7,
+            top: -6,
+            height: 45,
+            width: 45,
         },
         circle: {
-            borderRadius: 12,
+            borderRadius: 7,
             position: 'relative',
-            top: 14, left: 20,
-            height: 12,
-            width: 12,
+            top: 14, left: 8,
+            height: 14,
+            width: 14,
         },
     })
 };

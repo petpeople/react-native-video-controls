@@ -259,7 +259,7 @@ export default class VideoPlayer extends Component {
             this.methods.toggleFullscreen();
         }
 
-        this.methods.toggleControls();
+        // this.methods.toggleControls();
         state.lastScreenPress = time;
 
         this.setState( state );

@@ -112,7 +112,7 @@ export default class VideoPlayer extends Component {
             seekPanResponder: PanResponder,
             controlTimeout: null,
             volumeWidth: 150,
-            iconOffset: 0,
+            iconOffset: 7,
             seekWidth: 0,
             ref: Video,
         };
@@ -192,7 +192,7 @@ export default class VideoPlayer extends Component {
         this.setState( state );
 
         if ( state.showControls ) {
-            // this.setControlTimeout();
+            this.setControlTimeout();
         }
 
         if ( typeof this.props.onLoad === 'function' ) {
@@ -259,7 +259,7 @@ export default class VideoPlayer extends Component {
             this.methods.toggleFullscreen();
         }
 
-        // this.methods.toggleControls();
+        this.methods.toggleControls();
         state.lastScreenPress = time;
 
         this.setState( state );
@@ -285,24 +285,24 @@ export default class VideoPlayer extends Component {
      * Default is 15s
      */
     setControlTimeout() {
-        // this.player.controlTimeout = setTimeout( ()=> {
-        //     this._hideControls();
-        // }, this.player.controlTimeoutDelay );
+        this.player.controlTimeout = setTimeout( ()=> {
+            this._hideControls();
+        }, this.player.controlTimeoutDelay );
     }
 
     /**
      * Clear the hide controls timeout.
      */
     clearControlTimeout() {
-        // clearTimeout( this.player.controlTimeout );
+        clearTimeout( this.player.controlTimeout );
     }
 
     /**
      * Reset the timer completely
      */
     resetControlTimeout() {
-        // this.clearControlTimeout();
-        // this.setControlTimeout();
+        this.clearControlTimeout();
+        this.setControlTimeout();
     }
 
     /**
@@ -646,7 +646,7 @@ export default class VideoPlayer extends Component {
      * @return {float} volume handle position in px based on volume
      */
     calculateVolumePositionFromVolume() {
-        return this.player.volumeWidth * this.state.volume;
+        return this.player.volumeWidth / this.state.volume;
     }
 
 
@@ -989,7 +989,7 @@ export default class VideoPlayer extends Component {
     <View style={[
                 styles.seekbar.fill,
         {
-            width: this.state.seekerFillWidth ? this.state.seekerFillWidth : 0,
+            width: this.state.seekerFillWidth,
                 backgroundColor: this.props.seekColor || '#FFF'
         }
     ]}/>
@@ -997,7 +997,7 @@ export default class VideoPlayer extends Component {
         <View
         style={[
                 styles.seekbar.handle,
-        { left: this.state.seekerPosition ? this.state.seekerPosition : 0 }
+        { left: this.state.seekerPosition }
     ]}
         { ...this.player.seekPanResponder.panHandlers }
     >
@@ -1247,7 +1247,7 @@ const styles = {
             justifyContent: 'space-between',
             marginLeft: 12,
             marginRight: 12,
-            marginBottom: 10,
+            marginBottom: 0,
         },
         volume: {
             flexDirection: 'row',
@@ -1291,22 +1291,18 @@ const styles = {
         },
         track: {
             backgroundColor: '#333',
-            height: 3,
+            height: 1,
             marginLeft: 7,
         },
         fill: {
             backgroundColor: '#FFF',
-            height: 2,
+            height: 1,
         },
         handle: {
             position: 'absolute',
-            width: 60,
             marginTop: -24,
             marginLeft: -24,
             padding: 16,
-        },
-        icon: {
-            marginLeft:7
         }
     }),
     seekbar: StyleSheet.create({
@@ -1318,29 +1314,28 @@ const styles = {
         },
         track: {
             backgroundColor: '#333',
-            height: 3,
+            height: 1,
             position: 'relative',
             top: 14,
             width: '100%'
         },
         fill: {
             backgroundColor: '#FFF',
-            height: 3,
+            height: 1,
             width: '100%'
         },
         handle: {
             position: 'absolute',
-            marginLeft: -20,
-            top: -6,
-            height: 45,
-            width: 55,
+            marginLeft: -7,
+            height: 28,
+            width: 28,
         },
         circle: {
-            borderRadius: 9,
+            borderRadius: 12,
             position: 'relative',
-            top: 13, left: 15,
-            height: 18,
-            width: 18,
+            top: 8, left: 8,
+            height: 12,
+            width: 12,
         },
     })
 };
